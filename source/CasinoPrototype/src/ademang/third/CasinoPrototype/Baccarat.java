@@ -1,6 +1,9 @@
 package ademang.third.CasinoPrototype;
 
 
+
+//現在は上辺だけのバカラ．
+//Android API等を無視
 import java.util.Random;
 
 public class Baccarat{
