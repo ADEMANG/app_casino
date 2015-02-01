@@ -1,5 +1,6 @@
 package ademang.third.CasinoPrototype;
 
+import android.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Window;
@@ -16,11 +17,13 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//not found activity_main
 		setContentView(R.layout.activity_main);
 		mainActivity = this;
 		view = new MainView(this);
 		tickHandler = new TickHandler();
 		
+		//not found linearLayout
 		LinearLayout layout = (LinearLayout)findViewById(R.id.linearLayout);
 		layout.addView(view);
 		
@@ -40,15 +43,15 @@ public class MainActivity extends Activity {
 		mainActivity.finish();
 	}
 	
-	//’èŠúˆ—ƒnƒ“ƒhƒ‰
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
 	public class TickHandler extends Handler {
-		//’èŠúˆ—
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		@Override
 		public void handleMessage(Message msg){
 			view.invalidate();
 			if(tickHandler != null)tickHandler.sleep(100);
 		}
-		//ƒXƒŠ[ƒv
+		//ï¿½Xï¿½ï¿½ï¿½[ï¿½v
 		public void sleep(long how){
 			removeMessages(0);
 			sendMessageDelayed(obtainMessage(0),how);

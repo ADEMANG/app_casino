@@ -33,7 +33,7 @@ public class Baccarat{
 			tmp = rand.nextInt(51)+1;
 			for(int j=0; j<i; j++){
 				if(Trump[j] != tmp)
-					Trump[i] = (byte) tmp;
+					Trump[i] = (byte)tmp;
 			}
 		}
 	}
@@ -116,41 +116,9 @@ public class Baccarat{
 	 */
 	public boolean natural(){
 		boolean flag=false;
-		
-/*		for(int i=0; i<2; i++){
-			if(playerTrump[i] > 13){
-				if(playerTrump[i]/4 >= 10)
-					playerTrumpNum += 10;
-				else
-					playerTrumpNum += playerTrump[i]/4;
-			}
-			else{
-				if(playerTrump[i] >= 10)
-					playerTrumpNum += 0;
-				else
-					playerTrumpNum += playerTrump[i];
-			}
-		}*/
-		
-		
+
 		if(playerTrumpNum%10 == 8 || playerTrumpNum%10 == 9)
 			flag = true;
-		/*		
-		for(int i=0; i<2; i++){
-			if(bankerTrump[i] > 13){
-				if(bankerTrump[i]/4 >= 10)
-					bankerTrumpNum += 0;
-				else
-					bankerTrumpNum += bankerTrump[i]/4;
-			}
-			else{
-				if(bankerTrump[i] >= 10)
-					bankerTrumpNum += 0;
-				else
-					bankerTrumpNum += bankerTrump[i];
-			}
-		}
-		*/
 		if(bankerTrumpNum%10 == 8 || bankerTrumpNum%10 == 9)
 			flag = true;
 	
@@ -180,8 +148,8 @@ public class Baccarat{
 		
 		//プレイヤーがドローしなかった場合
 		if(playerDrawTF == false){
-			//バンカーの1桁目が5以下，なおかつ7でない場合にドロー
-			if(bankerTrumpNum%10 <= 5 && bankerTrumpNum != 7)
+			//バンカーの1桁目が5以下の場合にドロー
+			if(bankerTrumpNum%10 <= 5)
 				return true;
 			else
 				return false;
