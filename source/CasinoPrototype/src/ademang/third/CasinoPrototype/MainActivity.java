@@ -9,9 +9,11 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends Activity {
 	public static MainActivity mainActivity;
-	private MainView view;
+//	private MainView view;
+	private Baccarat view;
 	private TickHandler tickHandler;
 	
+//Baccarat debug use
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,7 +21,8 @@ public class MainActivity extends Activity {
 		
 		setContentView(R.layout.activity_main);
 		mainActivity = this;
-		view = new MainView(this);
+//		view = new MainView(this);
+		view = new Baccarat(this);
 		tickHandler = new TickHandler();
 		
 		LinearLayout layout = (LinearLayout)findViewById(R.id.linearLayout);
@@ -42,12 +45,14 @@ public class MainActivity extends Activity {
 	}
 	
 	//��������n���h��
+	//handler befor 100
+	//change long sleep for debug
 	public class TickHandler extends Handler {
 		//�������
 		@Override
 		public void handleMessage(Message msg){
 			view.invalidate();
-			if(tickHandler != null)tickHandler.sleep(100);
+			if(tickHandler != null)tickHandler.sleep(100000);
 		}
 		//�X���[�v
 		public void sleep(long how){

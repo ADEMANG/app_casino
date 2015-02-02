@@ -6,7 +6,13 @@ package ademang.third.CasinoPrototype;
 //Android API等を無視
 import java.util.Random;
 
-public class Baccarat{
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.View;
+
+public class Baccarat extends View{
 	private Random rand;
 	private byte[] Trump;//シャッフル済みトランプ山札
 	final private int trampNum = 52; //カードの枚数
@@ -20,6 +26,19 @@ public class Baccarat{
 	
 	public String win;//勝者
 	private boolean playerDrawTF = false;//プレイヤーが3枚目をドローを「した」/「してない」
+
+	//以下アンドロイドAPI
+	private Paint paint = new Paint();
+	
+
+	//コンストラクタ
+	public Baccarat(Context context) {
+		super(context);
+		paint.setColor(Color.BLACK);
+		paint.setTextSize(25);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
 	
 	
 	/*
@@ -30,8 +49,8 @@ public class Baccarat{
 		Trump = new byte[trampNum];
 		
 		for(int i=0,tmp=0; i<trampNum; i++){
-			tmp = rand.nextInt(51)+1;
-			for(int j=0; j<i; j++){
+			tmp = rand.nextInt(51) + 1;
+			for(int j=0; j<=i; j++){
 				if(Trump[j] != tmp)
 					Trump[i] = (byte)tmp;
 			}
@@ -40,23 +59,41 @@ public class Baccarat{
 	
 	/*
 	 * 実行部分
+	 * drawText use Debug
 	 */
-	public void main(){
+	public void onDraw(Canvas canvas){
 		trumpSet();
 		distribute();
+		
 		playerTrumpNum = sumTrump(playerTrump);
 		bankerTrumpNum = sumTrump(bankerTrump);
-		if(natural() == true)
+		if(natural())
 			win = winner();
 		else{
-			if(playerDraw() == true)
+			if(playerDraw() == true){
 				playerTrump[2] = draw();
-			if(bankerDraw() == true)
+				canvas.drawText(" " + playerTrump[2], 200, 50, paint);
+
+			}
+			if(bankerDraw() == true){
 				bankerTrump[2] = draw();
+				canvas.drawText(" " + bankerTrump[2], 200, 100, paint);
+			}
 			playerTrumpNum = sumTrump(playerTrump);
 			bankerTrumpNum = sumTrump(bankerTrump);
 			win = winner();
 		}
+		
+		canvas.drawText("p => " + playerTrump[0], 25, 50, paint);
+		canvas.drawText(" " + playerTrump[1], 125, 50, paint);
+		canvas.drawText(" === > "+ playerTrumpNum, 250, 50, paint);
+		
+		canvas.drawText("b => " + bankerTrump[0], 25, 100, paint);
+		canvas.drawText(" " + bankerTrump[1], 125, 100, paint);
+		canvas.drawText(" === > " + bankerTrumpNum, 250, 100, paint);
+
+		canvas.drawText(" TC= > " + trumpCount, 250, 150, paint);
+
 		
 	}
 	
@@ -73,21 +110,25 @@ public class Baccarat{
 	
 	/*
 	 * トランプの合計を計算し，その合計を返す
-	 * なお，10以上は10とみなされる
+	 * なお，10以上は0とみなされる
 	 */
 	public byte sumTrump(byte[] trumpCard){
 		byte sum=0;
-		byte div=0;
+		byte minus=0;
 		for(int i=0; i<trumpCard.length; i++){
-			if(trumpCard[i] > 13)
-				div=4;
+			if(40 <= trumpCard[i] && trumpCard[i] <= 51)
+				minus=39;
+			else if(27 <= trumpCard[i] && trumpCard[i] <= 39)
+				minus=26;
+			else if(14 <= trumpCard[i] && trumpCard[i] <= 26)
+				minus=13;
 			else
-				div=1;
+				minus=0;
 				
-			if(trumpCard[1]/4 >= 10)
-				sum += 10;
+			if(trumpCard[i]-minus >= 10)
+				sum += 0;
 			else
-				sum += trumpCard[i]/div;
+				sum += trumpCard[i]-minus;
 		}
 		return sum;
 	}
@@ -104,9 +145,9 @@ public class Baccarat{
 	 * トランプをプレイヤーとバンカーに配る．
 	 */
 	public void distribute(){
-		for(int i=0; i<2 && trumpCount+2<52; i+=2){
-			playerTrump[i] = Trump[i];
-			bankerTrump[i] = Trump[i+1];
+		for(int i=0,k=trumpCount,m=trumpCount+1; i<2 && trumpCount+2 < 52; i++,k+=2,m+=2){
+			playerTrump[i] = Trump[k];
+			bankerTrump[i] = Trump[m];
 			trumpCount += 2;
 		}
 	}
