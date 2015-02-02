@@ -1,6 +1,5 @@
 package ademang.third.CasinoPrototype;
 
-import android.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Window;
@@ -17,13 +16,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//not found activity_main
+		
 		setContentView(R.layout.activity_main);
 		mainActivity = this;
 		view = new MainView(this);
 		tickHandler = new TickHandler();
 		
-		//not found linearLayout
 		LinearLayout layout = (LinearLayout)findViewById(R.id.linearLayout);
 		layout.addView(view);
 		
