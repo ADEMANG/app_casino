@@ -5,22 +5,18 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class MainView extends View{
-	private int x;
-	private int y;
-	private int scene;			//次に描画する画面を管理する変数
-	private CasinoView nowGame; //現在描画している画面
+public class MainView extends View implements SceneValues{
+	private int scene;			//Screen will be drown
+	private Games nowGame; //Screen currently drawing games
 	
 	public MainView(Context context){
 		super(context);
-		x = 0;
-		y = 0;
-		nowGame = null;
+		scene = SCENE_NONE;
 	}
 	
 	@Override
 	public void onDraw(Canvas canvas){
-		/* まだ各画面ができてないのでコメントアウト
+		/* In production of games
 		 * nowGame.draw();
 		 * nowGame.changeMoney();
 		 * scene = nowGame.moveScene();
@@ -34,7 +30,7 @@ public class MainView extends View{
 	 */
 	private void transScene(){
 		/*
-		 * ゲーム画面ができ次第順次追加
+		 * In production
 		 */
 		switch(scene){
 		default:
@@ -44,12 +40,10 @@ public class MainView extends View{
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
-		x = (int)event.getX();
-		y = (int)event.getY();
 		/*
-		 * 全体を通してのメニュー的なのがあればここに追記
+		 * menu
 		 */
-		nowGame.processTouchEvent(event);		//現在描画している画面にタッチイベントをあげる
+		nowGame.processTouchEvent(event);		//Send Event to games
 		return true;
 	}
 }

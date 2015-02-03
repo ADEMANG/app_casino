@@ -9,20 +9,16 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends Activity {
 	public static MainActivity mainActivity;
-//	private MainView view;
-	private Baccarat view;
+	private MainView view;
 	private TickHandler tickHandler;
 	
-//Baccarat debug use
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
 		setContentView(R.layout.activity_main);
 		mainActivity = this;
-//		view = new MainView(this);
-		view = new Baccarat(this);
+		view = new MainView(this);
 		tickHandler = new TickHandler();
 		
 		LinearLayout layout = (LinearLayout)findViewById(R.id.linearLayout);
@@ -44,17 +40,15 @@ public class MainActivity extends Activity {
 		mainActivity.finish();
 	}
 	
-	//��������n���h��
-	//handler befor 100
-	//change long sleep for debug
+	//Periodic processing handler
 	public class TickHandler extends Handler {
-		//�������
+		//Periodic processing
 		@Override
 		public void handleMessage(Message msg){
 			view.invalidate();
-			if(tickHandler != null)tickHandler.sleep(100000);
+			if(tickHandler != null)tickHandler.sleep(100);
 		}
-		//�X���[�v
+		//Stop the process
 		public void sleep(long how){
 			removeMessages(0);
 			sendMessageDelayed(obtainMessage(0),how);
