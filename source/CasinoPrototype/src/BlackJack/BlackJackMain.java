@@ -21,17 +21,21 @@ public class BlackJackMain extends View implements SceneValues,Games{
 		this.canvas = canvas;
 		this.loadResource();
 	}
+	@Override
 	public void draw(Canvas canvas){
 		Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
 		canvas.drawRect(0, 0, 100, 100, paint);
 	}
+	@Override
 	public int changeMoney(){
 		return 0;
 	}
+	@Override
 	public int moveScene(){
 		return SCENE_NONE;
 	}
+	@Override
 	public void processTouchEvent(MotionEvent event){
 		
 	}
@@ -39,6 +43,6 @@ public class BlackJackMain extends View implements SceneValues,Games{
 	
 	private void loadResource(){
 		Resources r = getResources();
-		Bitmap club = BitmapFactory.decodeResource(r, R.drawable.club1);
+//		Bitmap club = BitmapFactory.decodeResource(r, R.drawable.club1);
 	}
 }

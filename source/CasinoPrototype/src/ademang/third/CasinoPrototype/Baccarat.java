@@ -93,8 +93,6 @@ public class Baccarat extends View{
 		for(int i=0; i<=trampNum; i++)
 			bitmapTramp[i] =  BitmapFactory.decodeResource(getResources(), bitmapID++);
 		
-		//リンちゃんの顔
-		tester = BitmapFactory.decodeResource(getResources(), R.drawable.tester);	
 		
 		//勝者の選択
 		parsageWinnerBmp[0] = BitmapFactory.decodeResource(getResources(), R.drawable.e_button_player);		
