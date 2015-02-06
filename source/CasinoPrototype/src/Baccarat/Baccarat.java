@@ -6,8 +6,11 @@ import ademang.third.CasinoPrototype.*;
 //現在は上辺だけのバカラ．
 //API use debuging now
 import java.util.Random;
+import java.util.ResourceBundle;
+
 import android.R.integer;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -17,7 +20,9 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class Baccarat extends View{
+public class Baccarat implements SceneValues,Games{
+	private Canvas canvas;
+	private int	scene;
 	private Random rand;
 	private byte[] Trump;//シャッフル済みトランプ山札
 	final private int trampNum = 52; //カードの枚数
@@ -60,8 +65,9 @@ public class Baccarat extends View{
 		
 	
 	//コンストラクタ
-	public Baccarat(Context context) {
-		super(context);
+	public Baccarat(Canvas canvas,Resources r) {
+		this.canvas = canvas;
+		this.loadResource(r);
 		
 		trumpSet();
 		
@@ -84,21 +90,26 @@ public class Baccarat extends View{
 		parsageWinnerBmp = new Bitmap[3];
 
 		count=0;
-		loadResource();
+//		loadResource();
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 	
-	private void loadResource(){
+	private void loadResource(Resources r){
+		/*
 		int bitmapID = 0x7f020000;
 		for(int i=0; i<=trampNum; i++)
 			bitmapTramp[i] =  BitmapFactory.decodeResource(getResources(), bitmapID++);
+		*/
+		for(int i=0; i<53; i++){
+			
+		}
+			
 		
 		
 		//勝者の選択
-		parsageWinnerBmp[0] = BitmapFactory.decodeResource(getResources(), R.drawable.e_button_player);		
-		parsageWinnerBmp[1] = BitmapFactory.decodeResource(getResources(), R.drawable.e_button_banker);
-		parsageWinnerBmp[2] = BitmapFactory.decodeResource(getResources(), R.drawable.e_button_tie);
-		
+//		parsageWinnerBmp[0] = BitmapFactory.decodeResource(getResources(), R.drawable.e_button_player);		
+//		parsageWinnerBmp[1] = BitmapFactory.decodeResource(getResources(), R.drawable.e_button_banker);
+//		parsageWinnerBmp[2] = BitmapFactory.decodeResource(getResources(), R.drawable.e_button_tie);		
 	}
 	
 	public void killResource(){
@@ -273,17 +284,24 @@ public class Baccarat extends View{
 			return false;
 		
 	}
-	
-	
-	
-	
+		
+	public int changeMoney() {
+		
+		return 0;
+	}
+		
+	public int moveScene() {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
+	}
+
 
 	/*
 	 * 実行部分
 	 * drawText use Debug
 	 */
-	@Override
-	public void onDraw(Canvas canvas){
+	
+	public void draw(Canvas canvas){
 		//描画領域の最大値を求める
 		int w = canvas.getWidth();
 		int h = canvas.getHeight();
@@ -348,6 +366,7 @@ public class Baccarat extends View{
 					win = winner();
 				}
 				
+				//デバッグ用
 				canvas.drawText("p === > "+ playerTrumpNum, 50, 650, paint);
 				canvas.drawText("b === > " + bankerTrumpNum, 50, 675, paint);
 				canvas.drawText("useTramp = > " + trumpCount, 50, 700, paint);
@@ -357,8 +376,7 @@ public class Baccarat extends View{
 		}			
 	}
 	
-	@Override
-	public boolean onTouchEvent(MotionEvent event){
+	public void processTouchEvent(MotionEvent event){
 		int tX = (int)event.getX();		//タッチされたところのX軸を取得
 		int tY = (int)event.getY();		//		〃           Y軸を取得
 
@@ -382,8 +400,8 @@ public class Baccarat extends View{
 		else {
 			
 		}
-		return true;
 	}
+
 }
 
 

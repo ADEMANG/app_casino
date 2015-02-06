@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
-
 import ademang.third.CasinoPrototype.*;
 
 public class BlackJackMain implements SceneValues,Games{
@@ -36,6 +35,5 @@ public class BlackJackMain implements SceneValues,Games{
 	
 	private void loadResource(Resources r){
 
-		Bitmap club = BitmapFactory.decodeResource(r, R.drawable.club1);
 	}
 }
