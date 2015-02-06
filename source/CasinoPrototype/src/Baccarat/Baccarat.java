@@ -1,11 +1,11 @@
-package ademang.third.CasinoPrototype;
+package Baccarat;
 
 
 
+import ademang.third.CasinoPrototype.*;
 //現在は上辺だけのバカラ．
 //API use debuging now
 import java.util.Random;
-
 import android.R.integer;
 import android.content.Context;
 import android.graphics.Bitmap;
