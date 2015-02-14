@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void handleMessage(Message msg){
 			view.invalidate();
-			if(tickHandler != null)tickHandler.sleep(100);
+			if(tickHandler != null)tickHandler.sleep(75);
 		}
 		//Stop the process
 		public void sleep(long how){
