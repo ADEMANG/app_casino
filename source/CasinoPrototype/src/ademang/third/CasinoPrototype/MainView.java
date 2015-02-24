@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import Baccarat.*;
 import BlackJack.*;
 import Select.*;
 
@@ -57,6 +58,7 @@ public class MainView extends View implements SceneValues{
 			nowGame = new BlackJackMain(getResources());
 			break;
 		case SCENE_BACCARAT:
+			nowGame = new Baccarat(getResources());
 			break;
 		default:
 			break;
