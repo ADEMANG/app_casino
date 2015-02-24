@@ -1,6 +1,7 @@
 package ademang.third.CasinoPrototype;
 
 import android.content.res.Resources;
+<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,10 +20,20 @@ public class Menu implements SceneValues{
 	
 	private boolean touch;
 	private Rect select_rect;
+=======
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+
+public class Menu implements SceneValues{
+	private Canvas canvas;
+>>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 	
 	public Menu(Resources r){
 		
 		
+<<<<<<< HEAD
 		touch = false;
 		loadResources(r);
 	}
@@ -58,13 +69,31 @@ public class Menu implements SceneValues{
 			}
 		}
 		
+=======
+		loadResources(r);
+	}
+	public void draw(Canvas canvas){
+		this.canvas = canvas;
+		Paint paint = new Paint();
+		paint.setColor(Color.MAGENTA);
+		canvas.drawRect(0, canvas.getHeight()*9/10, canvas.getWidth(), canvas.getHeight(), paint);
+		
+	}
+	public void processTouchEvent(MotionEvent e){
+		int w = canvas.getWidth();
+		int h = canvas.getHeight();
+>>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 		
 	}
 	public int moveScene(){
 		return SCENE_NONE;
 	}
 	private void loadResources(Resources r){
+<<<<<<< HEAD
 		ctr_back = BitmapFactory.decodeResource(r, R.drawable.menu_back);
 		src_ctr_back = new Rect(0, 0, ctr_back.getWidth(), ctr_back.getHeight());
+=======
+		
+>>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 	}
 }

@@ -1,6 +1,7 @@
 package ademang.third.CasinoPrototype;
 
 public class Status {
+<<<<<<< HEAD
 	private static int money;		//Player's assets
 	private static int event;		//Events progress
 	
@@ -23,5 +24,12 @@ public class Status {
 		//tmp
 		
 		return true;
+=======
+	private int money;		//Player's assets
+	private int event;		//Events progress
+	
+	public Status(){
+		
+>>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 	}
 }
