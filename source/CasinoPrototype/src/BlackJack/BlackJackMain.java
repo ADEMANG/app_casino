@@ -11,11 +11,10 @@ import android.view.MotionEvent;
 import ademang.third.CasinoPrototype.*;
 
 public class BlackJackMain implements SceneValues,Games{
-	private Canvas canvas;
 	private int scene;
 	
-	public BlackJackMain(Canvas canvas, Resources r){
-		this.canvas = canvas;
+	public BlackJackMain(Resources r){
+		scene = SCENE_NONE;
 		this.loadResource(r);
 	}
 	public void draw(Canvas canvas){
@@ -27,15 +26,14 @@ public class BlackJackMain implements SceneValues,Games{
 		return 0;
 	}
 	public int moveScene(){
-		return SCENE_NONE;
+		return scene;
 	}
 	public void processTouchEvent(MotionEvent event){
-		
+		scene = SCENE_SELECT;
 	}
 	
 	
 	private void loadResource(Resources r){
-
-		Bitmap club = BitmapFactory.decodeResource(r, R.drawable.club1);
+		
 	}
 }
