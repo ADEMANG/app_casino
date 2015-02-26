@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import Baccarat.*;
 import BlackJack.*;
 import Select.*;
 
@@ -14,12 +15,9 @@ public class MainView extends View implements SceneValues{
 	private Menu menu;
 	private int scene;			//Screen will be drown
 	private Games nowGame; 		//Screen currently drawing games
-<<<<<<< HEAD
-	private boolean apper_menu;
-	
+
+	private boolean apper_menu;	
 	private long startTime,endTime;
-=======
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 	
 	public MainView(Context context){
 		super(context);
@@ -33,7 +31,6 @@ public class MainView extends View implements SceneValues{
 	
 	@Override
 	public void onDraw(Canvas canvas){
-<<<<<<< HEAD
 		nowGame.draw(canvas);
 		this.printDebug(canvas);
 		if(apper_menu){
@@ -43,18 +40,6 @@ public class MainView extends View implements SceneValues{
 		nowGame.changeMoney();
 		scene = nowGame.moveScene();
 		transScene();
-		
-=======
-		//•`‰æŠÖŒW
-		nowGame.draw(canvas);
-		menu.draw(canvas);
-		//‚¨‹àŠÖŒW
-		nowGame.changeMoney();
-		//ƒV[ƒ“ŠÖŒW
-		scene = nowGame.moveScene();
-		
-		transScene();
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 	}
 	/**
 	 * ƒV[ƒ“‚ÌØ‚è‘Ö‚¦‚ÉnowGame‚ÌQÆæ‚ğ•t‚¯‘Ö‚¦‚é
@@ -65,16 +50,14 @@ public class MainView extends View implements SceneValues{
 		 */
 		switch(scene){
 		case SCENE_SELECT:
-<<<<<<< HEAD
 			apper_menu = true;
-=======
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 			nowGame = new Select(getResources());
 			break;
 		case SCENE_BLACKJACK:
 			nowGame = new BlackJackMain(getResources());
 			break;
 		case SCENE_BACCARAT:
+			nowGame = new Baccarat(getResources());
 			break;
 		default:
 			break;

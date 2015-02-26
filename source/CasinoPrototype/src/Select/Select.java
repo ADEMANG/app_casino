@@ -2,11 +2,8 @@ package Select;
 
 import ademang.third.CasinoPrototype.*;
 import android.content.res.Resources;
-<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-=======
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,67 +11,61 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 public class Select implements Games,SceneValues{
-<<<<<<< HEAD
-	
+	private Bitmap im_background;
+	private Rect src_background;
 	private Bitmap im_blackjack;
-	private Rect src_rect_blackjack;
+	private Rect src_blackjack;
 	private Bitmap im_baccarat;
-	private Rect src_rect_baccarat;
-	
-=======
-	private Canvas canvas;
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
+	private Rect src_baccarat;
+	private Bitmap im_poker;
+	private Rect src_poker;
+	private Bitmap im_ctr_left,im_ctr_right;
+	private Rect src_ctr_left,src_ctr_right;
+
 	private Rect rect_background;
-	private Rect rect_blackjack;
-	private Rect rect_baccarat;
+	private Rect rect_select1,rect_select2,rect_select3;
+	private Rect rect_ctr_left,rect_ctr_right;
+	private int state;
 	
 	private int scene;					//return next scene
 	private int w;						//Screen width
 	private int h;						//Screen height
 	private boolean touch;				//Use processTouchEvent
 	private Rect select_rect;			//Use processTouchEvent
-<<<<<<< HEAD
-	
-=======
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
+
 	public Select(Resources r){
 		scene = SCENE_NONE;
 		touch = false;
-		
+		state = 0;
 		loadResources(r);
 	}
+	
 	public void draw(Canvas canvas){
-<<<<<<< HEAD
-=======
-		this.canvas = canvas;
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 		//Initialization
 		w = canvas.getWidth();
 		h = canvas.getHeight();
 		
 		rect_background = new Rect(0,0,w,h);
-		rect_blackjack = new Rect(w/5,h/5,w*2/5,h*3/5);
-		rect_baccarat = new Rect(w*2/5,h/5,w*3/5,h*3/5);
+		rect_select1 = new Rect(w/10,h/5,w*3/10,h*3/5);
+		rect_select2 = new Rect(w*4/10,h/5,w*6/10,h*3/5);
+		rect_select3 = new Rect(w*7/10,h/5,w*9/10,h*3/5);
 		
-<<<<<<< HEAD
+		rect_ctr_left = new Rect(0,h*4/10,w/10,h*5/10);
+		rect_ctr_right = new Rect(w*9/10,h*4/10,w,h*5/10);
 		
-		canvas.drawBitmap(im_blackjack, src_rect_blackjack, rect_blackjack, null);		//BlackJack
+		canvas.drawBitmap(im_background, src_background, rect_background, null);
+		switch(state){
+		case 0:
+			canvas.drawBitmap(im_blackjack, src_blackjack, rect_select1, null);
+			canvas.drawBitmap(im_baccarat, src_baccarat, rect_select2, null);
+			canvas.drawBitmap(im_poker, src_poker, rect_select3, null);
+			break;
 		
-		canvas.drawBitmap(im_baccarat, src_rect_baccarat, rect_baccarat, null);		//Baccarat
+		}
+		canvas.drawBitmap(im_ctr_left, src_ctr_left, rect_ctr_left, null);
+		canvas.drawBitmap(im_ctr_right, src_ctr_right, rect_ctr_right, null);
 		
 		this.printDebug(canvas);
-=======
-		Paint paint = new Paint();
-		paint.setColor(Color.BLUE);
-		canvas.drawRect(rect_background,paint);		//background
-		
-		paint.setColor(Color.BLACK);
-		canvas.drawRect(rect_blackjack,paint);		//BlackJack
-		
-		paint.setColor(Color.GREEN);
-		canvas.drawRect(rect_baccarat, paint);		//Baccarat
-		
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 	}
 	public int changeMoney(){
 		return 0;
@@ -83,56 +74,69 @@ public class Select implements Games,SceneValues{
 		return scene;
 	}
 	public void processTouchEvent(MotionEvent event){
-<<<<<<< HEAD
 		Rect touchRect = new Rect((int)event.getX()-10,(int)event.getY()-10,(int)event.getX()+10,(int)event.getY()+10);
-		
+				
 		if(touch == false && event.getAction() == MotionEvent.ACTION_DOWN){
 			touch = true;
-			if(Rect.intersects(rect_blackjack, touchRect)){                                                                                                                 
-=======
-		Rect touchRect = new Rect((int)event.getX()-5,(int)event.getY()-5,(int)event.getX()+5,(int)event.getY()+5);
-		
-		if(touch == false && event.getAction() == MotionEvent.ACTION_DOWN){
-			touch = true;
-			if(Rect.intersects(rect_blackjack, touchRect)){
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
-				select_rect = rect_blackjack;
-			}else if(Rect.intersects(rect_baccarat, touchRect)){
-				select_rect = rect_baccarat;
+			if(Rect.intersects(rect_select1, touchRect)){                                                                                                                 
+				select_rect = rect_select1;
+			}else if(Rect.intersects(rect_select2, touchRect)){
+				select_rect = rect_select2;
+			}else if(Rect.intersects(rect_ctr_left, touchRect)){
+				select_rect = rect_ctr_left;
+			}else if(Rect.intersects(rect_ctr_right, touchRect)){
+				select_rect = rect_ctr_right;
 			}
 		}else if(touch == true && event.getAction() == MotionEvent.ACTION_UP){
 			touch = false;
-<<<<<<< HEAD
-			if(Rect.intersects(rect_blackjack, touchRect) && select_rect.equals(rect_blackjack)){
-				scene = SCENE_BLACKJACK;
-			}else if(Rect.intersects(rect_baccarat, touchRect) && select_rect.equals(rect_baccarat)){
-=======
-			if(Rect.intersects(rect_blackjack, touchRect) && select_rect == rect_blackjack){
-				scene = SCENE_BLACKJACK;
-			}else if(Rect.intersects(rect_baccarat, touchRect) && select_rect == rect_baccarat){
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
-				scene = SCENE_BACCARAT;
+			if(Rect.intersects(rect_select1, touchRect) && select_rect.equals(rect_select1)){
+				switch(state){
+				case 0:
+					scene = SCENE_BLACKJACK;
+					break;
+				}
+			}else if(Rect.intersects(rect_select2, touchRect) && select_rect.equals(rect_select2)){
+				switch(state){
+				case 0:
+					scene = SCENE_BACCARAT;
+					break;
+				}
+			}else if(Rect.intersects(rect_select3, touchRect) && select_rect.equals(rect_select3)){
+				switch(state){
+				case 0:
+					scene = SCENE_POKER;
+					break;
+				}
+			}else if(Rect.intersects(rect_ctr_left, touchRect) && select_rect.equals(rect_ctr_left)){
+				state--;
+			}else if(Rect.intersects(rect_ctr_right, touchRect) && select_rect.equals(rect_ctr_right)){
+				state++;
 			}
 		}
 	}
 	
 	private void loadResources(Resources r){
-<<<<<<< HEAD
+		im_background = BitmapFactory.decodeResource(r, R.drawable.select_background);
+		src_background = new Rect(0, 0, im_background.getWidth(), im_background.getHeight());
 		im_blackjack = BitmapFactory.decodeResource(r, R.drawable.select_blackjack);
-		src_rect_blackjack = new Rect(0, 0, im_blackjack.getWidth(), im_blackjack.getHeight());
+		src_blackjack = new Rect(0, 0, im_blackjack.getWidth(), im_blackjack.getHeight());
 		im_baccarat = BitmapFactory.decodeResource(r, R.drawable.select_baccarat);
-		src_rect_baccarat = new Rect(0, 0, im_baccarat.getWidth(), im_baccarat.getHeight());
-		
+		src_baccarat = new Rect(0, 0, im_baccarat.getWidth(), im_baccarat.getHeight());
+		im_poker = BitmapFactory.decodeResource(r, R.drawable.select_poker);
+		src_poker = new Rect(0, 0, im_poker.getWidth(), im_poker.getHeight());
+		im_ctr_left = BitmapFactory.decodeResource(r, R.drawable.ctr_left);
+		src_ctr_left = new Rect(0, 0, im_ctr_left.getWidth(), im_ctr_left.getHeight());
+		im_ctr_right = BitmapFactory.decodeResource(r, R.drawable.ctr_right);
+		src_ctr_right = new Rect(0, 0, im_ctr_right.getWidth(), im_ctr_right.getHeight());
 	}
 	
 	public void printDebug(Canvas canvas){
 		Paint paint = new Paint();
 		paint.setColor(Color.BLACK);
-		canvas.drawText("touch = " + touch + "\t scene = " + scene + 
-						"\n select_rect = " + select_rect, 10, h-200, paint);
+		canvas.drawText("touch = " + touch +
+						"\t scene = " + scene + 
+						"\n select_rect = " + select_rect +
+						"\n state = " + state
+						, 10, h-200, paint);
 	}
-=======
-		
-	}
->>>>>>> 6f002c3fab3d1274d4489cf7abd6724ae4612ccf
 }
