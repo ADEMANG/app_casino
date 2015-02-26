@@ -15,7 +15,6 @@ public class MainView extends View implements SceneValues{
 	private Menu menu;
 	private int scene;			//Screen will be drown
 	private Games nowGame; 		//Screen currently drawing games
-
 	private boolean apper_menu;	
 	private long startTime,endTime;
 	
@@ -31,6 +30,7 @@ public class MainView extends View implements SceneValues{
 	
 	@Override
 	public void onDraw(Canvas canvas){
+
 		nowGame.draw(canvas);
 		this.printDebug(canvas);
 		if(apper_menu){

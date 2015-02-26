@@ -19,7 +19,6 @@ public class Menu implements SceneValues{
 	
 	private boolean touch;
 	private Rect select_rect;
-	
 	public Menu(Resources r){
 		touch = false;
 		loadResources(r);
@@ -56,7 +55,6 @@ public class Menu implements SceneValues{
 			}
 		}
 	}
-	
 	public int moveScene(){
 		return SCENE_NONE;
 	}

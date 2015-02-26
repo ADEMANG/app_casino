@@ -20,9 +20,7 @@ public class Select implements Games,SceneValues{
 	private Bitmap im_poker;
 	private Rect src_poker;
 	private Bitmap im_ctr_left,im_ctr_right;
-	private Rect src_ctr_left,src_ctr_right;
-
-	private Rect rect_background;
+	private Rect src_ctr_left,src_ctr_right;	private Rect rect_background;
 	private Rect rect_select1,rect_select2,rect_select3;
 	private Rect rect_ctr_left,rect_ctr_right;
 	private int state;
@@ -66,6 +64,7 @@ public class Select implements Games,SceneValues{
 		canvas.drawBitmap(im_ctr_right, src_ctr_right, rect_ctr_right, null);
 		
 		this.printDebug(canvas);
+
 	}
 	public int changeMoney(){
 		return 0;
@@ -78,6 +77,7 @@ public class Select implements Games,SceneValues{
 				
 		if(touch == false && event.getAction() == MotionEvent.ACTION_DOWN){
 			touch = true;
+
 			if(Rect.intersects(rect_select1, touchRect)){                                                                                                                 
 				select_rect = rect_select1;
 			}else if(Rect.intersects(rect_select2, touchRect)){
@@ -120,7 +120,7 @@ public class Select implements Games,SceneValues{
 		src_background = new Rect(0, 0, im_background.getWidth(), im_background.getHeight());
 		im_blackjack = BitmapFactory.decodeResource(r, R.drawable.select_blackjack);
 		src_blackjack = new Rect(0, 0, im_blackjack.getWidth(), im_blackjack.getHeight());
-		im_baccarat = BitmapFactory.decodeResource(r, R.drawable.select_baccarat);
+		im_baccarat = BitmapFactory.decodeResource(r, R.drawable.select_baccarat);		
 		src_baccarat = new Rect(0, 0, im_baccarat.getWidth(), im_baccarat.getHeight());
 		im_poker = BitmapFactory.decodeResource(r, R.drawable.select_poker);
 		src_poker = new Rect(0, 0, im_poker.getWidth(), im_poker.getHeight());
